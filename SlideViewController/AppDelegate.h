@@ -12,6 +12,9 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property float autoSizeScaleX;
+
+@property float autoSizeScaleY;
 
 @end
 

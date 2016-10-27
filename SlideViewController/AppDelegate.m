@@ -7,7 +7,10 @@
 //
 
 #import "AppDelegate.h"
-
+#import "InternalPageViewController.h"
+//viewcontroller
+#define SCREEN_WIDTH  [UIScreen mainScreen].bounds.size.height     //屏幕高度
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.width    //屏幕宽度
 @interface AppDelegate ()
 
 @end
@@ -17,6 +20,24 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //1.创建window
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController = [[InternalPageViewController alloc] init];
+    
+    
+    //适配 请不要删除
+    AppDelegate *myDelegate = [[UIApplication sharedApplication] delegate];
+    if(SCREEN_HEIGHT > 480){
+        myDelegate.autoSizeScaleX = SCREEN_WIDTH/375;
+        myDelegate.autoSizeScaleY = SCREEN_HEIGHT/667;
+    }else{
+        myDelegate.autoSizeScaleX = 1.0;
+        myDelegate.autoSizeScaleY = 1.0;
+    }
+
+    
     return YES;
 }
 
